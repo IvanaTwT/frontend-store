@@ -1,26 +1,26 @@
 import { useContext, useEffect, useState } from "react";
+import { TbShoppingBag, TbShoppingCart } from "react-icons/tb";
 import { BiShoppingBag } from "react-icons/bi"
 import { useAuth } from "../contexts/AuthContext";
 import useFetch from "../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
-import ThemeContext from "../contexts/ThemeContext"
+import ThemeContext from "../contexts/ThemeContext";
+import { CartContext } from "../contexts/CartContext";
 import toast from "react-hot-toast";
 export default function Navbar() {
     const { theme, toggleTheme } = useContext(ThemeContext);
-    const { token, isAuthenticated, user_id, is_admin, id_cliente } =
-        useAuth("state"); //para hacer validaciones
+    const { total_cant } = useContext(CartContext);
+    const { token, isAuthenticated, user_id, is_admin, id_cliente } =useAuth("state"); 
     const { logout } = useAuth("actions"); //para deslogearse
     //cerrar session en el backend
     const [{ data, isError, isLoading }, doFetch] = useFetch(
-        `${import.meta.env.VITE_API_BASE_URL}/logout`,
+        `${import.meta.env.VITE_BACKEND_URL}/logout`,
         {
             method: "GET",
             headers: { Authorization: `Token ${token}` },
         }
     );
     const [active, setActive] = useState("is-active");
-    // para las etiquetas a ={() => navigate(`/recetas/${receta.id}`)}
-
     const handleActive = () => {
         setActive(active === "is-active" ? "is-static" : "is-active");
     };
@@ -32,13 +32,11 @@ export default function Navbar() {
             : "bg-gradient-to-br from-slate-800 to-gray-800 text-white";
 
     function handleLogout() {
-        //pasar credenciales: token, metodo get
         doFetch();
     }
     useEffect(() => {
         if (data) {
             // console.log("Respuesta del backend:", data);
-
             if (data.message) {
                 toast.success(data.message, {
                     position: "bottom-right",
@@ -49,7 +47,7 @@ export default function Navbar() {
                 toast.error(data.error, {
                     position: "bottom-right",
                     duration: 4000,
-                }); // "No se encontró el token"
+                });
             }
         }
     }, [data, isError, isLoading]);
@@ -117,6 +115,17 @@ export default function Navbar() {
                                 <i className={`fa-lg fa-regular fa-user`}></i>
                             </a>
                         )}
+                        {/* {Carrito} */}
+                        {id_cliente && (
+                            <div className="flex align-items-center relative">
+                                <TbShoppingCart
+                                    onClick={() => navigate("/mi-carrito")}
+                                    className="icon-cart text-3xl cursor-pointer transform scale-x-[-1]"></TbShoppingCart>
+                                <span className="flex items-center justify-center w-5 h-5 text-xs font-medium absolute bottom-4 left-0 bg-red-500 text-white rounded-full">
+                                    {total_cant}
+                                </span>
+                            </div>
+                        )}
 
                         {/* Botón Sign up (solo si no está logueado) */}
                         {!isAuthenticated && (
@@ -137,7 +146,6 @@ export default function Navbar() {
                             }>
                             {isAuthenticated ? "Logout" : "Log in"}
                         </a>
-                        
                     </div>
 
                     {/* Burger menu (mobile) */}
@@ -193,9 +201,6 @@ export default function Navbar() {
 
                        
                     <div className="flex gap-2 pt-2">
-                        {/* <a className="flex-1 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                            Sign up
-                        </a> */}
                         {/* Icono de perfil */}
                         <button
                             onClick={toggleTheme}
@@ -219,6 +224,17 @@ export default function Navbar() {
                                 className="cursor-pointer">
                                 <i className={`fa-lg fa-regular fa-user`}></i>
                             </a>
+                        )}
+                        {/* {Carrito} */}
+                        {id_cliente && (
+                            <div className="flex align-items-center relative">
+                                <TbShoppingCart
+                                    onClick={() => navigate("/mi-carrito")}
+                                    className="icon-cart text-3xl cursor-pointer transform scale-x-[-1]"></TbShoppingCart>
+                                <span className="flex items-center justify-center w-5 h-5 text-xs font-medium absolute bottom-4 left-0 bg-red-500 text-white rounded-full">
+                                    {total_cant}
+                                </span>
+                            </div>
                         )}
                         {!isAuthenticated && (
                             <a
