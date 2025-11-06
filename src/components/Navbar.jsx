@@ -5,11 +5,11 @@ import { useAuth } from "../contexts/AuthContext";
 import useFetch from "../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 import ThemeContext from "../contexts/ThemeContext";
-import { CartContext } from "../contexts/CartContext";
+import  {CartContext}  from "../contexts/CartContext";
 import toast from "react-hot-toast";
 export default function Navbar() {
     const { theme, toggleTheme } = useContext(ThemeContext);
-    const { total_cant } = useContext(CartContext);
+    const { cart,setCart,isLoadingCart,isErrorCart,total,total_cant } = useContext(CartContext);
     const { token, isAuthenticated, user_id, is_admin, id_cliente } =useAuth("state"); 
     const { logout } = useAuth("actions"); //para deslogearse
     //cerrar session en el backend

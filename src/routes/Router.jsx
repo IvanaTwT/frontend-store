@@ -4,6 +4,7 @@ import Inicio from "../components/Inicio";
 import Login from "../components/Auth/Login";
 import ProtectedRoute from "./ProtectedRoute";
 import Signup from "../components/Auth/Signup";
+import ContactForm from "../components/ContactoForm" 
 const Router = createBrowserRouter([
     {
         element: <Layout />,
@@ -24,7 +25,15 @@ const Router = createBrowserRouter([
             {
                 path: "/signup",
                 element: <Signup />,
-            }
+            },
+            {
+                path: "/contact",
+                element: (
+                    <ProtectedRoute>
+                        <ContactForm/>
+                    </ProtectedRoute>
+                ),
+            },
         ],
     },
 ]);
