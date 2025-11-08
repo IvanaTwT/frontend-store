@@ -14,7 +14,7 @@ export default function User() {
     const { theme } = useContext(ThemeContext);
 
     const [{ data, isError, isLoading }, doFetch] = useFetch(
-        `${import.meta.env.VITE_BACKEND_URL}/profile-client/${parseInt(
+        `${import.meta.env.VITE_API_BASE_URL}/profile-client/${parseInt(
             id_cliente
         )}`,
         {

@@ -41,7 +41,7 @@ export default function CartProvider({ children }) {
                 } else {
                     // Si no existe, lo creamos
                     const createCart = await fetch(
-                        `${import.meta.env.VITE_BACKEND_URL}/carts/add`,
+                        `${import.meta.env.VITE_API_BASE_URL}/carts/add`,
                         {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
@@ -146,7 +146,7 @@ export default function CartProvider({ children }) {
         try {
             // ... (Tu código actual para agregar el item a la API)
             const res = await fetch(
-                `${import.meta.env.VITE_BACKEND_URL}/carts/add-item`,
+                `${import.meta.env.VITE_API_BASE_URL}/carts/add-item`,
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -203,7 +203,7 @@ export default function CartProvider({ children }) {
         try {
             // ... (Tu código actual para actualizar la cantidad en la API)
             const res = await fetch(
-                `${import.meta.env.VITE_BACKEND_URL}/carts/update-item`,
+                `${import.meta.env.VITE_API_BASE_URL}/carts/update-item`,
                 {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
@@ -243,7 +243,7 @@ export default function CartProvider({ children }) {
 
         try {
             const res = await fetch(
-                `${import.meta.env.VITE_BACKEND_URL}/carts/delete-item`,
+                `${import.meta.env.VITE_API_BASE_URL}/carts/delete-item`,
                 {
                     method: "DELETE",
                     headers: { "Content-Type": "application/json" },

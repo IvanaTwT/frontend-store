@@ -14,7 +14,7 @@ export default function Navbar() {
     const { logout } = useAuth("actions"); //para deslogearse
     //cerrar session en el backend
     const [{ data, isError, isLoading }, doFetch] = useFetch(
-        `${import.meta.env.VITE_BACKEND_URL}/logout`,
+        `${import.meta.env.VITE_API_BASE_URL}/logout`,
         {
             method: "GET",
             headers: { Authorization: `Token ${token}` },

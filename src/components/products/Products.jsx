@@ -37,7 +37,7 @@ export default function Products() {
     if (treStars.length === 0) return <p>No hay productos con valoraciones altas</p>;
     
     return (
-        <div className={`${colors} shadow-[0px_3px_3px_rgba(0,0,0,0.5)]`}>
+        <div className={`${colors} shadow-[0px_2px_2px_rgba(0,0,0,0.5)]`}>
             <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                 <h2 className="text-2xl font-bold tracking-tight text-gray-900">
                     Productos con más valoraciones:

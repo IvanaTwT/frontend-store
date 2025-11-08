@@ -22,7 +22,7 @@ export default function Profile({ cliente = null, usuario_admin = null, setClien
     });
     const id_usuario = cliente?.user_id?.user_id || usuario_admin?.id_user;
     const [{ data, isError, isLoading }, doFetch] = useFetch(
-        `${import.meta.env.VITE_BACKEND_URL}/update/${parseInt(id_usuario)}`,
+        `${import.meta.env.VITE_API_BASE_URL}/update/${parseInt(id_usuario)}`,
         {
             method: "PUT",
             headers: { Authorization: `Token ${token}` , "Content-Type": "application/json"},
@@ -34,7 +34,7 @@ export default function Profile({ cliente = null, usuario_admin = null, setClien
         { data: dataDelete, isError: isErrorDelete, isLoading: isLoadingDelete },
         doFetchDelete,
     ] = useFetch(
-        `${import.meta.env.VITE_BACKEND_URL}/delete/${parseInt(id_usuario)}`,
+        `${import.meta.env.VITE_API_BASE_URL}/delete/${parseInt(id_usuario)}`,
         {
             method: "DELETE",
             headers: { Authorization: `Token ${token}` },

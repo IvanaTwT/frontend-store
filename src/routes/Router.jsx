@@ -5,6 +5,10 @@ import Login from "../components/Auth/Login";
 import ProtectedRoute from "./ProtectedRoute";
 import Signup from "../components/Auth/Signup";
 import ContactForm from "../components/ContactoForm" 
+import ProductList from "../components/products/ProductList";
+import ProductDetail from "../components/products/ProductDetail";
+import ClientDashboard from "../components/Auth/ClientDashboard"
+import Profile from "../components/Auth/Profile";
 const Router = createBrowserRouter([
     {
         element: <Layout />,
@@ -31,6 +35,35 @@ const Router = createBrowserRouter([
                 element: (
                     <ProtectedRoute>
                         <ContactForm/>
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: "/products",
+                children: [
+                    {
+                        index: true,
+                        element: <ProductList />,
+                    },
+                    {
+                        path: ":id",
+                        element: <ProductDetail />,
+                    },
+                ],
+            },
+            {
+                path: "/profile",
+                element: (
+                    <ProtectedRoute>
+                        <ClientDashboard />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: "/profile/:id",
+                element: (
+                    <ProtectedRoute>
+                        <Profile />
                     </ProtectedRoute>
                 ),
             },

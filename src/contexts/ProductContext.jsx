@@ -15,7 +15,7 @@ export default function ProductProvider({ children }) {
     const [isErrorCategories, setIsErrorCategories] = useState(false); // Estado de error para categorias
 
     const [{ data, isError, isLoading }, doFetchProducts] = useFetch(
-        `${import.meta.env.VITE_BACKEND_URL}/products/all`,
+        `${import.meta.env.VITE_API_BASE_URL}/products/all`,
         {
             method: "GET",
         }
@@ -29,7 +29,7 @@ export default function ProductProvider({ children }) {
             isLoading: isLoadingCategory,
         },
         doFetchCategory,
-    ] = useFetch(`${import.meta.env.VITE_BACKEND_URL}/products/categories`, {
+    ] = useFetch(`${import.meta.env.VITE_API_BASE_URL}/products/categories`, {
         method: "GET",
     });
 
@@ -41,7 +41,7 @@ export default function ProductProvider({ children }) {
             isLoading: isLoadingValo,
         },
         doFetchValo,
-    ] = useFetch(`${import.meta.env.VITE_BACKEND_URL}/valoracion/`, {
+    ] = useFetch(`${import.meta.env.VITE_API_BASE_URL}/valoracion/`, {
         method: "GET",
     });
 

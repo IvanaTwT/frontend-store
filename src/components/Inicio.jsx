@@ -11,6 +11,7 @@ export default function Inicio(){
     return (
         <div className={`flex items-center justify-center min-h-screen w-full p-6 ${colors}`}>
         <Products></Products>
+        {/* add cant usu, productos, valoraciones*/}
         </div>
     )
 }
