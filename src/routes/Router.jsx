@@ -9,6 +9,7 @@ import ProductList from "../components/products/ProductList";
 import ProductDetail from "../components/products/ProductDetail";
 import ClientDashboard from "../components/Auth/ClientDashboard"
 import Profile from "../components/Auth/Profile";
+import Cart from "../components/carrito/Cart"
 const Router = createBrowserRouter([
     {
         element: <Layout />,
@@ -67,6 +68,14 @@ const Router = createBrowserRouter([
                     </ProtectedRoute>
                 ),
             },
+            {
+                path:"/mi-carrito",
+                element:(
+                    <ProtectedRoute>
+                        <Cart/>
+                    </ProtectedRoute>
+                )
+            }
         ],
     },
 ]);
