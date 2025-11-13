@@ -1,10 +1,13 @@
 import Item from "./Item";
 import Resumen from "./Resumen";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react"; 
 import ThemeContext from "../../contexts/ThemeContext";
 import { CartContext } from "../../contexts/CartContext";
 import Container from "../Container"
+import Modal from "../../components/Modal";
+import PedidoForm from "../pedido/PedidoForm"
 export default function Cart() {
+    const [ showModal, setShowModal]= useState(false)
     const { theme } = useContext(ThemeContext);
     const { cart, setCart, isLoadingCart, isErrorCart,total,total_cant, addItemToCart, decrementarCantidad, removeFromCart} = useContext(CartContext);
     // console.log(cart);
@@ -35,6 +38,16 @@ export default function Cart() {
             <div className="self-start sticky top-6">
                 <Resumen/>
             </div>
+            <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+                    {showModal && (
+                        <PedidoForm
+                            cart={cart}
+                            total={total}
+                            setCart={setCart}
+                            onClose={() => setShowModal(false)}
+                        />
+                    )}
+            </Modal>
         </div>
     );
 }

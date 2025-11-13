@@ -17,7 +17,7 @@ export default function PedidoForm({ cart, setCart, total, onClose }) {
     const [
         { data: dataPost, isError: isErrorPost, isLoading: isLoadingPost },
         doFetchPost,
-    ] = useFetch(`${import.meta.env.VITE_BACKEND_URL}/pedidos/create`, {
+    ] = useFetch(`${import.meta.env.VITE_API_BASE_URL}/pedidos/create`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -26,7 +26,7 @@ export default function PedidoForm({ cart, setCart, total, onClose }) {
     });
 
     const [{ data, isError, isLoading }, doFetch] = useFetch(
-        `${import.meta.env.VITE_BACKEND_URL}/addresses/client/${parseInt(
+        `${import.meta.env.VITE_API_BASE_URL}/addresses/client/${parseInt(
             id_cliente
         )}`,
         {

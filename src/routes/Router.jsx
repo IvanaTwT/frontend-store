@@ -10,6 +10,8 @@ import ProductDetail from "../components/products/ProductDetail";
 import ClientDashboard from "../components/Auth/ClientDashboard"
 import Profile from "../components/Auth/Profile";
 import Cart from "../components/carrito/Cart"
+import PedidoDetail from "../components/pedido/PedidoDetail"
+import User from "../components/Auth/User"
 const Router = createBrowserRouter([
     {
         element: <Layout />,
@@ -75,7 +77,23 @@ const Router = createBrowserRouter([
                         <Cart/>
                     </ProtectedRoute>
                 )
-            }
+            },
+            {
+                path: "/pedido/:id",
+                element: (
+                    <ProtectedRoute>
+                        <PedidoDetail />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: "/profile-client/:id_cliente",
+                element: (
+                    <ProtectedRoute>
+                        <User/>
+                    </ProtectedRoute>
+                ),
+            },  
         ],
     },
 ]);
