@@ -143,7 +143,7 @@ export default function Profile({ cliente = null, usuario_admin = null, setClien
 
     // console.log("ESTA autenticado? " + isAuthenticated + "user_id:" + user_id);
     return (
-        <div className={`flex justify-center items-center min-h-screen m-4 shadow-[30px_4px_30px_rgba(0,0,0,0.5)`}>
+        <div className={`flex justify-center items-center m-4 shadow-[30px_4px_30px_rgba(0,0,0,0.5)`}>
             <form
                 onSubmit={handleSubmit}
                 className={`w-full max-w-md shadow-lg rounded-2xl p-8 space-y-6 ${colors}`}>

@@ -73,7 +73,7 @@ export default function Signup() {
         <div className={`flex justify-center items-center min-h-screen p-4 ${colors}`}>
             <form
                 onSubmit={handleSubmit}
-                className={ `w-full max-w-md shadow-lg rounded-2xl p-8 space-y-6 border ${colors}`}>
+                className={ `w-full max-w-md shadow-[0_4px_30px_rgba(0,0,0,0.5)] rounded-2xl p-8 space-y-6 ${colors}`}>
                 <h2 className={`text-2xl font-bold text-center pr-4 ${colors}`}>
                     Perfil
                 </h2>

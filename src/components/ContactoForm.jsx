@@ -35,7 +35,7 @@ export default function ContactForm() {
 
   return (
     <div className={`flex justify-center items-center min-h-screen p-4 ${colors} `}>
-      <div className={`p-8 w-full max-w-md rounded-2xl shadow-2xl border ${colors}`}>
+      <div className={`p-8 w-full max-w-md shadow-[0_4px_30px_rgba(0,0,0,0.5)] rounded-2xl ${colors}`}>
         <h2 className="text-2xl font-semibold mb-6 text-center">
           Contáctanos
         </h2>

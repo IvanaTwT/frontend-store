@@ -12,6 +12,7 @@ import Profile from "../components/Auth/Profile";
 import Cart from "../components/carrito/Cart"
 import PedidoDetail from "../components/pedido/PedidoDetail"
 import User from "../components/Auth/User"
+import AdminDashboard from "../components/Auth/AdminDashboard";
 const Router = createBrowserRouter([
     {
         element: <Layout />,
@@ -93,7 +94,15 @@ const Router = createBrowserRouter([
                         <User/>
                     </ProtectedRoute>
                 ),
-            },  
+            },
+            {
+                path: "/admin-dashboard",
+                element: (
+                    <ProtectedRoute>
+                        <AdminDashboard />
+                    </ProtectedRoute>
+                ),
+            },
         ],
     },
 ]);

@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams, useNavigate} from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { useAuth } from "../../contexts/AuthContext";
 import toast from "react-hot-toast";
@@ -140,14 +140,20 @@ export default function Valoracion({
         <div className="flex flex-col bg-gray-100 shadow-md p-5 rounded-lg border border-gray-200 hover:shadow-lg transition max-w-xl w-full">
             {/* 🔹 Botones de edición (fuera del formulario) */}
             <div className="flex justify-items-start ">
-                <FaUserCircle className={` text-4xl ${theme==="light" ? "text-black-500": "text-black"}`} /> 
+                <FaUserCircle
+                    className={` text-4xl ${
+                        theme === "light" ? "text-black-500" : "text-black"
+                    }`}
+                />
                 <p
                     className="cursor-pointer text-black pt-2 text-1xl "
-                    onClick={() =>{
-                        parseInt(formData.id_cliente)=== parseInt(id_cliente) ? navigate(`/profile`)
-                        : navigate(`/profile-client/${formData.id_cliente}`)
-                    }                        
-                    }>
+                    onClick={() => {
+                        parseInt(formData.id_cliente) === parseInt(id_cliente)
+                            ? navigate(`/profile`)
+                            : navigate(
+                                  `/profile-client/${formData.id_cliente}`
+                              );
+                    }}>
                     #000{formData.id_cliente}
                 </p>
             </div>
@@ -169,25 +175,21 @@ export default function Valoracion({
                     </div>
                 )}
 
-            {/* 🔹 Formulario */}
+            {/* Formulario */}
             <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                 {/* Estrellas y Calificación */}
-                <div className="flex items-center justify-between">
-                    <p className="text-yellow-500 text-lg font-semibold">
+                <p className="text-yellow-500 text-xl font-semibold">
                         {estrellas}
-                    </p>
+                </p>
+                <div className="flex items-center gap-3">
                     <select
                         name="calificacion"
                         value={formData.calificacion}
                         onChange={handleChange}
                         disabled={!isEditing}
                         className={`border rounded-md p-2 text-gray-700 focus:ring focus:ring-blue-300 
-                            ${
-                                !isEditing
-                                    ? "bg-gray-100 cursor-not-allowed"
-                                    : "bg-white"
-                            }
-                        `}
+                ${!isEditing ? "bg-gray-100 cursor-not-allowed" : "bg-white"}
+            `}
                         required>
                         <option value="">Selecciona calificación</option>
                         {selectCalificacion.map((c) => (
@@ -197,7 +199,6 @@ export default function Valoracion({
                         ))}
                     </select>
                 </div>
-
                 {/* Comentario */}
                 <textarea
                     name="comentario"

@@ -89,7 +89,7 @@ export default function Login() {
         <div
             className={`flex justify-center items-center min-h-screen  p-4 ${colors} `}>
                 <div
-                    className={`w-full max-w-md rounded-2xl shadow-2xl p-8 border ${colors}`}>
+                    className={`w-full max-w-md rounded-2xl p-8 shadow-[0_4px_30px_rgba(0,0,0,0.5)] ${colors}`}>
                     <h1 className="text-3xl font-bold text-center mb-6">
                         Login
                     </h1>

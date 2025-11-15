@@ -22,7 +22,7 @@ export default function ProductList() {
     const [selectedPrenda, setSelectedPrenda] = useState(null);//seleciona la categoria de prenda
     const [selectedEdad, setSelectedEdad] = useState(null);//selecciona para que edad
     const [filteredProducts, setFilteredProducts] = useState([]);//se filtra los productos a mostrar
-
+    const [menuOpen, setMenuOpen] = useState(false);
     useEffect(() => {
         // console.log("Entrando a products");
         if (isLoadingProducts && isErrorProducts) {
@@ -88,25 +88,24 @@ export default function ProductList() {
             </div>
 
             {/* Fila 2: sidebar + productos */}
-            <div className={`flex flex-1 overflow-hidden ${colors}`}>
-                {/* Sidebar izquierda: categorías de prenda */}
-                <aside className={`w-1/5 bg-gradient-to-r  m-1 p-2 overflow-y-auto ${colors} shadow-[0px_3px_3px_rgba(0,0,0,0.5)]`}>
-                    {/* <h3 className={`text-lg  mb-4 text-center ${colors}`}>
-                        Categorías:
-                    </h3> */}
+            <div className="flex flex-1 overflow-hidden">
+                {/* Sidebar izquierda: categorías de prenda (PC)*/}
+                <aside className={`hidden md:block w-1/5 m-1 p-2 overflow-y-auto shadow-[0px_3px_3px_rgba(0,0,0,0.5)] ${colors}`}>
                     <ul className="space-y-2">
-                        {categories && categories.length > 0 ? (
-                            categories.map((cat,index) => (
+                        {categories?.length > 0 ? (
+                            categories.map((cat) => (
                                 <li
-                                    key={index}
+                                    key={cat.id_categoria}
                                     className={`text-center cursor-pointer px-3 py-2 rounded-md ${
                                         selectedPrenda === cat.id_categoria
-                                            ? `${theme === "light"? "bg-teal-500 text-black" : "bg-gray-400  text-white" }`
-                                            : `${theme === "light" ? " hover:bg-gray-300 text-black" : "hover:bg-gray-300 text-white" }`
+                                            ? theme === "light"
+                                                ? "bg-teal-500 text-black"
+                                                : "bg-gray-400 text-white"
+                                            : theme === "light"
+                                            ? "hover:bg-gray-300 text-black"
+                                            : "hover:bg-gray-300 text-white"
                                     }`}
-                                    onClick={() =>
-                                        setSelectedPrenda(cat.id_categoria)
-                                    }>
+                                    onClick={() => setSelectedPrenda(cat.id_categoria)}>
                                     {cat.nombre}
                                 </li>
                             ))
@@ -115,6 +114,58 @@ export default function ProductList() {
                         )}
                     </ul>
                 </aside>
+
+                {/* BOTÓN BURGER MOBILE */}
+                <div className="md:hidden absolute top-75 left-4 z-20">
+                    <button
+                        onClick={() => setMenuOpen(!menuOpen)}
+                        className="p-2 bg-gray-800 text-white rounded">
+                        {menuOpen ? (
+                            <i className="fa-solid fa-xmark text-xl"></i>
+                        ) : (
+                            <i className="fa-solid fa-bars text-xl"></i>
+                        )}
+                    </button>
+                </div>
+
+                {/* MENU MOBILE DESPLEGABLE */}
+                {menuOpen && (
+                    <div
+                        className={`md:hidden fixed top-0 left-0 w-2/3 h-full p-2 shadow-lg z-30 ${colors}`}>
+                        <button
+                            onClick={() => setMenuOpen(false)}
+                            className="absolute top-2 right-4 p-2 bg-gray-800 text-white rounded"
+                        >
+                            <i className="fa-solid fa-xmark text-xl"></i>
+                        </button>
+                        <h3 className="text-lg font-semibold mb-4">Categorías</h3>
+                        <ul className="space-y-2">
+                            {categories?.length > 0 ? (
+                                categories.map((cat) => (
+                                    <li
+                                        key={cat.id_categoria}
+                                        className={`cursor-pointer px-3 py-2 rounded-md ${
+                                            selectedPrenda === cat.id_categoria
+                                                ? theme === "light"
+                                                    ? "bg-teal-500 text-black"
+                                                    : "bg-gray-400 text-white"
+                                                : theme === "light"
+                                                ? "hover:bg-gray-300 text-black"
+                                                : "hover:bg-gray-300 text-white"
+                                        }`}
+                                        onClick={() => {
+                                            setSelectedPrenda(cat.id_categoria);
+                                            setMenuOpen(false);
+                                        }}>
+                                        {cat.nombre}
+                                    </li>
+                                ))
+                            ) : (
+                                <li>No hay categorías</li>
+                            )}
+                        </ul>
+                    </div>
+                )}
 
                 {/* Contenedor de productos scrollable */}
                 <main className={`flex-1 overflow-y-auto p-4 ${colors}`}>
