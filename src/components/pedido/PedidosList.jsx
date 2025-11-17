@@ -21,7 +21,7 @@ export default function PedidosList() {
             : "bg-slate-700 text-white";
 
     const [{ data, isError, isLoading }, doFetchPedidos] = useFetch(
-        `${import.meta.env.VITE_BACKEND_URL}/pedidos/`,
+        `${import.meta.env.VITE_API_BASE_URL}/pedidos/`,
         { method: "GET" }
     );
     useEffect(() => {
@@ -32,8 +32,6 @@ export default function PedidosList() {
         if (Array.isArray(data)) {
             setPedidos(data);
         } else if (data && data.message) {
-            // Si tu backend envuelve la respuesta en { message: [...] }
-
             setPedidos(data.message);
         } else if (data?.error) {
             toast.error(data.error, {

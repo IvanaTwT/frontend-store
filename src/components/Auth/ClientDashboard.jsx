@@ -14,6 +14,7 @@ export default function ClientDashboard() {
     const [selectedView, setSelectedView] = useState("Ver Perfil"); // "perfil" | "pedidos"
     const [cliente, setCliente] = useState(null);
     const [pedidos, setPedidos] = useState([]);
+    const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
     if (is_admin === 1) {
         navigate("/admin-dashboard");
@@ -100,7 +101,7 @@ export default function ClientDashboard() {
             {/* Fila : sidebar + vista */}
             <div className={`flex flex-1 overflow-hidden ${colors}`}>
                 <aside
-                    className={`w-1/5 bg-gradient-to-r mr-1 p-4 overflow-y-auto ${colors} shadow-[0px_3px_3px_rgba(0,0,0,0.5)]`}>
+                    className={`hidden md:block w-1/5 m-1 p-4 overflow-y-auto ${colors} shadow-[0px_3px_3px_rgba(0,0,0,0.5)]`}>
                     <ul className="space-y-2">
                         {views_client && views_client.length > 0 ? (
                             views_client.map((vista, index) => (
@@ -128,7 +129,55 @@ export default function ClientDashboard() {
                         )}
                     </ul>
                 </aside>
-
+                {/* BOTÓN BURGER MOBILE */}
+                <div className="md:hidden absolute top-56 left-2 z-20">
+                    <button
+                        onClick={() => setMenuOpen(!menuOpen)}
+                        className="p-2 bg-gray-800 text-white rounded">
+                        {menuOpen ? (
+                            <i className="fa-solid fa-xmark text-xl"></i>
+                        ) : (
+                            <i className="fa-solid fa-bars text-xl"></i>
+                        )}
+                    </button>
+                </div>
+                {/* MENU MOBILE DESPLEGABLE */}
+                {menuOpen && (
+                    <div
+                        className={`md:hidden fixed top-0 left-0 w-2/3 h-full p-4 shadow-lg z-30 ${colors}`}>
+                        <button
+                            onClick={() => setMenuOpen(false)}
+                            className="absolute top-2 right-4 p-2 bg-gray-800 text-white rounded">
+                            <i className="fa-solid fa-xmark text-xl"></i>
+                        </button>
+                        <ul className="space-y-2">
+                            {views_client && views_client.length > 0 ? (
+                                views_client.map((vista, index) => (
+                                    <li
+                                        key={index}
+                                        className={`text-center cursor-pointer px-3 py-2  rounded-md ${
+                                            selectedView === vista
+                                                ? `${
+                                                      theme === "light"
+                                                          ? "bg-teal-500 text-black"
+                                                          : "bg-gray-400  text-white"
+                                                  }`
+                                                : `${
+                                                      theme === "light"
+                                                          ? "hover:bg-gray-300 text-black"
+                                                          : "hover:bg-gray-300 text-white"
+                                                  }`
+                                        }`}
+                                        onClick={() => setSelectedView(vista)}>
+                                        {vista}
+                                    </li>
+                                ))
+                            ) : (
+                                <li>No tiene vistas para mostrar</li>
+                            )}
+                        </ul>
+                    </div>
+                )}
                 {/* Contenedor para colocar el perfil del cliente o bien sus pedidos si tiene  scrollable */}
                 <main className={`flex-1 overflow-y-auto p-1 ${colors}`}>
                     {selectedView === "Ver Perfil" ? (

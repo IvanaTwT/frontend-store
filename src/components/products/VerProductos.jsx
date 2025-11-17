@@ -2,6 +2,9 @@ import { useState, useContext, useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
 import ThemeContext from "../../contexts/ThemeContext";
 import Producto from "./Producto";
+import Modal from "../../components/Modal";
+import ProductEdit from "./ProductEdit";
+import ProductDelete from "./ProductDelete";
 import { ProductContext } from "../../contexts/ProductContext";
 import Container from "../Container";
 export default function VerProductos() {
@@ -9,6 +12,8 @@ export default function VerProductos() {
         useContext(ProductContext);
     const [productsList, setProductsList] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(null);
+    const [showEdit, setShowEdit] = useState(false);
+    const [showDelete, setShowDelete] = useState(false);
     const { theme } = useContext(ThemeContext);
     const colors =
         theme === "light"
@@ -45,6 +50,14 @@ export default function VerProductos() {
                         <Producto
                             key={p.id_producto}
                             product={p}
+                            onEdit={() => {
+                                setSelectedProduct(p);
+                                setShowEdit(true);
+                            }}
+                            onDelete={() => {
+                                setSelectedProduct(p);
+                                setShowDelete(true);
+                            }}
                         />
                     ))
                 ) : (
@@ -54,6 +67,23 @@ export default function VerProductos() {
                 )}
             </ul>
 
+            <Modal isOpen={showEdit} onClose={() => setShowEdit(false)}>
+                {selectedProduct && (
+                    <ProductEdit
+                        product={selectedProduct}
+                        onClose={() => setShowEdit(false)}
+                    />
+                )}
+            </Modal>
+
+            <Modal isOpen={showDelete} onClose={() => setShowDelete(false)}>
+                {selectedProduct && (
+                    <ProductDelete
+                        product={selectedProduct}
+                        onClose={() => setShowDelete(false)}
+                    />
+                )}
+            </Modal>
         </div>
     );
 }

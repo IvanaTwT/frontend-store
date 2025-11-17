@@ -112,105 +112,105 @@ export default function PedidoDetail() {
         );
 
     return (
-        <div
-            className={`max-w-4xl mx-auto m-6 rounded-2xl shadow-lg p-8 border border-gray-100 ${colors}`}>
-            <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
-                <i className="fa-solid fa-box text-blue-600"></i> Detalle del
-                Pedido
-            </h2>
+        <div className={`flex items-center justify-center min-h-screen w-full p-2 ${colors}`}>
+            <div className={`max-w-4xl mx-auto m-6 rounded-2xl shadow-lg p-8 border border-gray-100 ${colors}`}>
+                <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
+                    <i className="fa-solid fa-box text-blue-600"></i> Detalle del Pedido
+                </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div className="space-y-2">
-                    <p>
-                        <strong>ID Pedido:</strong> #{id}
-                    </p>
-                    <p>
-                        <strong>Estado:</strong>{" "}
-                        <span className="text-blue-600">{pedido.estado}</span>
-                    </p>
-                    <p>
-                        <i className="fa-solid fa-calendar text-gray-500 mr-2"></i>
-                        <strong>Fecha:</strong> {pedido.fecha}
-                    </p>
-                    <p>
-                        <i className="fa-solid fa-dollar-sign text-green-600 mr-2"></i>
-                        <strong>Total:</strong> ${pedido.total}
-                    </p>
-                </div>
-
-                <div className="rounded-xl p-4 border border-gray-300">
-                    <h3 className="font-semibold mb-2 flex items-center gap-2">
-                        <i className="fa-solid fa-home text-orange-500"></i>{" "}
-                        Domicilio
-                    </h3>
-                    {domicilio?.domicilio ? (
-                        <>
-                            <p>
-                                <strong>Dirección:</strong>{" "}
-                                {domicilio.domicilio}
-                            </p>
-                            <p>
-                                <strong>Ciudad:</strong> {domicilio.ciudad}
-                            </p>
-                            <p>
-                                <strong>Código Postal:</strong>{" "}
-                                {domicilio.codigo_postal}
-                            </p>
-                        </>
-                    ) : (
-                        <p className="text-gray-400 italic">
-                            No se encontró domicilio asociado.
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div className="space-y-2">
+                        <p>
+                            <strong>ID Pedido:</strong> #{id}
                         </p>
-                    )}
+                        <p>
+                            <strong>Estado:</strong>{" "}
+                            <span className="text-blue-600">{pedido.estado}</span>
+                        </p>
+                        <p>
+                            <i className="fa-solid fa-calendar text-gray-500 mr-2"></i>
+                            <strong>Fecha:</strong> {pedido.fecha}
+                        </p>
+                        <p>
+                            <i className="fa-solid fa-dollar-sign text-green-600 mr-2"></i>
+                            <strong>Total:</strong> ${pedido.total}
+                        </p>
+                    </div>
+
+                    <div className="rounded-xl p-4 border border-gray-300">
+                        <h3 className="font-semibold mb-2 flex items-center gap-2">
+                            <i className="fa-solid fa-home text-orange-500"></i>{" "}
+                            Domicilio
+                        </h3>
+                        {domicilio?.domicilio ? (
+                            <>
+                                <p>
+                                    <strong>Dirección:</strong>{" "}
+                                    {domicilio.domicilio}
+                                </p>
+                                <p>
+                                    <strong>Ciudad:</strong> {domicilio.ciudad}
+                                </p>
+                                <p>
+                                    <strong>Código Postal:</strong>{" "}
+                                    {domicilio.codigo_postal}
+                                </p>
+                            </>
+                        ) : (
+                            <p className="text-gray-400 italic">
+                                No se encontró domicilio asociado.
+                            </p>
+                        )}
+                    </div>
                 </div>
-            </div>
 
-            <h3 className="text-2xl font-semibold mb-4 border-b pb-2 flex items-center gap-2">
-                <i className="fa-solid fa-bag-shopping text-indigo-500"></i>{" "}
-                Productos
-            </h3>
+                <h3 className="text-2xl font-semibold mb-4 border-b pb-2 flex items-center gap-2">
+                    <i className="fa-solid fa-bag-shopping text-indigo-500"></i>{" "}
+                    Productos
+                </h3>
 
-            {listProducts.length > 0 ? (
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {listProducts.map((product, index) => (
-                        <li
-                            key={index}
-                            onClick={() =>
-                                navigate(`/products/${product.id_producto}`)
-                            }
-                            className="p-4 bg-gray-50 rounded-xl border border-gray-200 hover:shadow-md transition cursor-pointer">
-                            {product.path_image ? (
-                                <img
-                                    src={product.path_image}
-                                    alt={product.nombre}
-                                    className="w-full h-40 object-cover rounded-md mb-3"
-                                />
-                            ) : (
-                                <div className="w-full h-40 bg-gray-200 flex items-center justify-center rounded-md mb-3 text-gray-500 italic">
-                                    Imagen no disponible
-                                </div>
-                            )}
-                            <h4 className="text-lg font-semibold text-gray-800">
-                                {product.nombre}
-                            </h4>
-                            <p className="text-sm text-gray-600">
-                                Cantidad: {product.cantidad}
-                            </p>
-                            <p className="text-sm text-gray-600">
-                                Precio: ${product.precioxunidad}
-                            </p>
-                            <p className="font-medium text-gray-800 mt-2">
-                                Subtotal: $
-                                {product.cantidad * product.precioxunidad}
-                            </p>
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                <p className="text-gray-400 italic">
-                    No hay productos en este pedido.
-                </p>
-            )}
+                {listProducts.length > 0 ? (
+                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {listProducts.map((product, index) => (
+                            <li
+                                key={index}
+                                onClick={() =>
+                                    navigate(`/products/${product.id_producto}`)
+                                }
+                                className="p-4 bg-gray-50 rounded-xl border border-gray-200 hover:shadow-md transition cursor-pointer">
+                                {product.path_image ? (
+                                    <img
+                                        src={product.path_image}
+                                        alt={product.nombre}
+                                        className="w-full h-40 object-cover rounded-md mb-3"
+                                    />
+                                ) : (
+                                    <div className="w-full h-40 bg-gray-200 flex items-center justify-center rounded-md mb-3 text-gray-500 italic">
+                                        Imagen no disponible
+                                    </div>
+                                )}
+                                <h4 className="text-lg font-semibold text-gray-800">
+                                    {product.nombre}
+                                </h4>
+                                <p className="text-sm text-gray-600">
+                                    Cantidad: {product.cantidad}
+                                </p>
+                                <p className="text-sm text-gray-600">
+                                    Precio: ${product.precioxunidad}
+                                </p>
+                                <p className="font-medium text-gray-800 mt-2">
+                                    Subtotal: $
+                                    {product.cantidad * product.precioxunidad}
+                                </p>
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p className="text-gray-400 italic">
+                        No hay productos en este pedido.
+                    </p>
+                )}
         </div>
+    </div>
     );
 }

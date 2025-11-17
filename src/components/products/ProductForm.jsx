@@ -32,7 +32,7 @@ export default function ProductForm() {
     const [
         { data: dataCategory, isError: isErrorCategory, isLoading: isLoadingCategory },
         doFetchCategory,
-    ] = useFetch(`${import.meta.env.VITE_API_BASE_URL}/products/categories`, {
+    ] = useFetch(`${import.meta.env.VITE_BACKEND_URL}/products/categories`, {
         method: "GET",
     });
 
@@ -40,7 +40,7 @@ export default function ProductForm() {
     const [
         { data: dataProduct, isError: isErrorProduct, isLoading: isLoadingProduct },
         doFetchProduct,
-    ] = useFetch(`${import.meta.env.VITE_API_BASE_URL}/products/new-product`, {
+    ] = useFetch(`${import.meta.env.VITE_BACKEND_URL}/products/new-product`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
     });
