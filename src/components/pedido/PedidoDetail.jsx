@@ -6,7 +6,7 @@ import ThemeContext from "../../contexts/ThemeContext";
 import { ProductContext } from "../../contexts/ProductContext";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
-import formatFecha from "../../hooks/formatfecha"
+import formatFecha from "../../hooks/formatFecha"
 export default function PedidoDetail() {
     const { id } = useParams();
     const navigate = useNavigate();
