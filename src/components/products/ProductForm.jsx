@@ -9,7 +9,7 @@ import { ProductContext } from "../../contexts/ProductContext";
 export default function ProductForm() {
     const { token, user_id } = useAuth("state");
     const { theme } = useContext(ThemeContext);
-    const { addProduct } = useContext(ProductContext);
+    const {categories, addProduct } = useContext(ProductContext);
     const navigate = useNavigate();
 
     const colors =
@@ -18,8 +18,6 @@ export default function ProductForm() {
             : "bg-slate-700 text-white";
 
     const categoria_edad = ["Hombre", "Mujer", "Niño"];
-
-    const [categories, setCategories] = useState([]);
     const [selectTalle, setSelectTalle] = useState([
         "XXS", "XS", "S", "M", "L", "XL", "XXL"
     ]);
@@ -28,39 +26,14 @@ export default function ProductForm() {
         "Negro", "Blanco", "Rosa", "Azul Marino", "Celeste", "Beige"
     ];
 
-    // fetch categorías
-    const [
-        { data: dataCategory, isError: isErrorCategory, isLoading: isLoadingCategory },
-        doFetchCategory,
-    ] = useFetch(`${import.meta.env.VITE_BACKEND_URL}/products/categories`, {
-        method: "GET",
-    });
-
     // fetch crear producto
     const [
         { data: dataProduct, isError: isErrorProduct, isLoading: isLoadingProduct },
         doFetchProduct,
-    ] = useFetch(`${import.meta.env.VITE_BACKEND_URL}/products/new-product`, {
+    ] = useFetch(`${import.meta.env.VITE_API_BASE_URL}/products/new-product`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
     });
-
-    useEffect(() => {
-        doFetchCategory();
-    }, []);
-
-    useEffect(() => {
-        if (dataCategory && !isLoadingCategory && !isErrorCategory) {
-            if (dataCategory.message) {
-                setCategories(dataCategory.message);
-            } else if (dataCategory.error) {
-                toast.error(dataCategory.error, {
-                    position: "bottom-right",
-                    duration: 4000,
-                });
-            }
-        }
-    }, [dataCategory, isLoadingCategory, isErrorCategory]);
 
     const [formData, setFormData] = useState({
         user_id: parseInt(user_id),

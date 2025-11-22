@@ -14,7 +14,7 @@ export default function PedidoDelete({ pedido, onClose }) {
       : "bg-slate-700 text-white";
 
   const [{ data: dataDelete, isError: isErrorDelete, isLoading: isLoadingDelete }, doFetchDelete] = useFetch(
-    `${import.meta.env.VITE_BACKEND_URL}/pedidos/delete`,
+    `${import.meta.env.VITE_API_BASE_URL}/pedidos/delete`,
     {
       method: "DELETE",
       headers: {  "Content-Type": "application/json" , Authorization: `Token ${token}` },

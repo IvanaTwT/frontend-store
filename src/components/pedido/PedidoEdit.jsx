@@ -21,7 +21,7 @@ export default function PedidoEdit({ pedido, onClose }) {
             isLoading: isLoadingUpdate,
         },
         doFetchUpdate,
-    ] = useFetch(`${import.meta.env.VITE_BACKEND_URL}/pedidos/update-estado`, {
+    ] = useFetch(`${import.meta.env.VITE_API_BASE_URL}/pedidos/update-estado`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",

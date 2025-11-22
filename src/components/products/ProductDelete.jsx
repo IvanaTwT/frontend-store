@@ -16,7 +16,7 @@ export default function ProductDelete({ product, onClose }) {
       : "bg-slate-700 text-white";
 
   const [{ data: dataDelete, isError: isErrorDelete, isLoading: isLoadingDelete }, doFetchDelete] = useFetch(
-    `${import.meta.env.VITE_BACKEND_URL}/products/delete-product`,
+    `${import.meta.env.VITE_API_BASE_URL}/products/delete-product`,
     {
       method: "DELETE",
       headers: {  "Content-Type": "application/json" , Authorization: `Token ${token}` },

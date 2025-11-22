@@ -16,7 +16,7 @@ export default function ProductEdit({ product, onClose }) {
       : "bg-slate-700 text-white";
 
   const [{ data: dataUpdate, isError: isErrorUpdate, isLoading: isLoadingUpdate }, doFetchProductUpdate] = useFetch(
-    `${import.meta.env.VITE_BACKEND_URL}/products/update-product`,
+    `${import.meta.env.VITE_API_BASE_URL}/products/update-product`,
     {
       method: "PUT",
       headers: {  "Content-Type": "application/json" , Authorization: `Token ${token}` },
