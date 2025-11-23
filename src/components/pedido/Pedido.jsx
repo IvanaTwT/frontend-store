@@ -54,7 +54,7 @@ export default function Pedido({ pedido, onEdit, onDelete }) {
             )
             : null
             }
-            {is_admin && window.location.pathname==="/admin-dashboard"
+            {/* {is_admin && window.location.pathname==="/admin-dashboard"
             ? (
                 <button
                 onClick={onDelete}
@@ -62,7 +62,7 @@ export default function Pedido({ pedido, onEdit, onDelete }) {
                 <i class="fa-solid fa-trash"></i>
             </button>
             ): null
-            }
+            } */}
             </div>
         </li>
     );

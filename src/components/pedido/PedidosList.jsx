@@ -81,14 +81,14 @@ export default function PedidosList() {
                         />
                     )}
             </Modal>
-            <Modal isOpen={showDelete} onClose={() => setShowDelete(false)}>
+            {/* <Modal isOpen={showDelete} onClose={() => setShowDelete(false)}>
                 {setSelectedPedido && (
                     <PedidoDelete
                         pedido={selectedPedido}
                         onClose={() => setShowDelete(false)}
                     />
                 )}
-            </Modal>
+            </Modal> */}
         </div>
     );
 }
