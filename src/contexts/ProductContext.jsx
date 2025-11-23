@@ -96,10 +96,8 @@ export default function ProductProvider({ children }) {
 
     // Actualizar un producto existente, pasar el objeto
     const updateProduct = (updatedProduct) => {
-        setProducts((prev) =>
-            prev.map((p) =>
-                p.id_producto === updatedProduct.id_producto ? updatedProduct : p
-            )
+        setProducts((prev) => prev.map(
+            (p) => p.id_producto === updatedProduct.id_producto ? { ...p, ...updatedProduct } : p )
         );
     };
 
